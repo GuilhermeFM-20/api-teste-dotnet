@@ -1,0 +1,37 @@
+﻿services:
+  api:
+    build: .
+
+    container_name: api_teste
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - mysql
+
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: "server=mysql;port=3306;database=apiteste;user=api_user;password=Api@123456"
+
+  mysql:
+    image: mysql:8.4
+
+    container_name: mysql_api
+
+    restart: always
+
+    environment:
+      MYSQL_DATABASE: apiteste
+      MYSQL_USER: api_user
+      MYSQL_PASSWORD: Api@123456
+      MYSQL_ROOT_PASSWORD: root
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

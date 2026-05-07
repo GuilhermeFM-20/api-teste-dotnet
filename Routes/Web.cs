@@ -43,5 +43,15 @@ public static class WebRoutes
                 return Results.Ok(person);
             }
         );
+
+        route.MapDelete("{id:guid}",
+            async (Guid id, PersonRequest request, PersonContext context) =>
+            {
+                var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
+                
+                
+                
+            }}
+        );
     }
 }

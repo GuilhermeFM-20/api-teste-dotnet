@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 // Configuração correta do DbContext
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<PersonContext>(options =>
+builder.Services.AddDbContext<DBContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
 
